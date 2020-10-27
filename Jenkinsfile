@@ -6,7 +6,7 @@ pipeline {
         DockerName = 'imagenprueba'
         DockerTag = 'latest'
         DockerLoginCredentials = 'f24dbf03-9e78-40ff-b23b-2522e4eaccf1'
-        GithubLoginCredentials = '8c261a41-3dac-4ef5-ba70-dde256d515e6'
+        GithubLoginCredentials = 'af5d1559-94a6-4420-af6b-2e3024d6f7ea'
     }
     stages {
         stage ('¿Quien soy 😀?') {
