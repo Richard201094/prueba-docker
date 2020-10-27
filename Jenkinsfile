@@ -33,9 +33,9 @@ pipeline {
                         image.push()
                     }
                     // Github registry
-                    docker.withRegistry('https://npm.pkg.github.com/', GithubLoginCredentials) {
-                        def image = docker.build("${GithubUsername}/${DockerName}:${DockerTag}")
-                        image.push()
+					 echo "$PAT" | docker login docker.pkg.github.com -u Richard201094 --password-stdin
+					 docker tag IMAGE_ID docker.pkg.github.com/richard201094/prueba-docker/imagenprueba:latest
+					 docker push docker.pkg.github.com/richard201094/prueba-docker/imagenprueba:latest
                     }
                 }
             }
