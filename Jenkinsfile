@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        DockerUsername = 'sasarafalsky'
-        DockerName = 'prueba-c2'
-        DockerTag = '$BUILD_NUMBER'
+        DockerUsername = 'richardtorres'
+        DockerName = 'imagenprueba'
+        DockerTag = 'latest'
         DockerLoginCredentials = 'f24dbf03-9e78-40ff-b23b-2522e4eaccf1'
     }
     stages {
@@ -27,7 +27,7 @@ pipeline {
                 script {
                     // Docker Hub
                     docker.withRegistry('', DockerLoginCredentials) {
-                        def image = docker.build("${DockerUsername}/${DockerName}:0.${DockerTag}")
+                        def image = docker.build("${DockerUsername}/${DockerName}:${DockerTag}")
                         image.push()
                     }
                 }
