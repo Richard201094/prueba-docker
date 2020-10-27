@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DockerUsername = 'richardtorres'
-        GitlabUsername = 'Richard201094'
+        GitlabUsername = 'richard201094'
         DockerName = 'imagenprueba'
         DockerTag = 'latest'
         DockerLoginCredentials = 'f24dbf03-9e78-40ff-b23b-2522e4eaccf1'
@@ -33,11 +33,9 @@ pipeline {
                         image.push()
                     }
                     // Github registry
-					script{
-					 echo "$PAT" | docker login docker.pkg.github.com -u Richard201094 --password-stdin
-					 docker tag IMAGE_ID docker.pkg.github.com/richard201094/prueba-docker/${DockerName}:${DockerTag}
-					 docker push docker.pkg.github.com/richard201094/prueba-docker/${DockerName}:${DockerTag}
-					 }
+                    docker.withRegistry('docker.pkg.github.com', GithubLoginCredentials) {
+                        def image = docker.build("${GithubUsername}/${DockerName}:${DockerTag}")
+                        image.push()
                     }
                 }
             }
