@@ -33,7 +33,7 @@ pipeline {
                         image.push()
                     }
                     // Github registry
-                    docker.withRegistry('docker.pkg.github.com', GithubLoginCredentials) {
+                    docker.withRegistry('https://docker.pkg.github.com', GithubLoginCredentials) {
                         def image = docker.build("${GithubUsername}/${DockerName}:${DockerTag}")
                         image.push()
                     }
