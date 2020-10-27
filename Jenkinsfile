@@ -35,8 +35,8 @@ pipeline {
                     // Github registry
 					script{
 					 echo "$PAT" | docker login docker.pkg.github.com -u Richard201094 --password-stdin
-					 docker tag IMAGE_ID docker.pkg.github.com/richard201094/prueba-docker/imagenprueba:latest
-					 docker push docker.pkg.github.com/richard201094/prueba-docker/imagenprueba:latest
+					 docker tag IMAGE_ID docker.pkg.github.com/richard201094/prueba-docker/${DockerName}:${DockerTag}
+					 docker push docker.pkg.github.com/richard201094/prueba-docker/${DockerName}:${DockerTag}
 					 }
                     }
                 }
