@@ -52,10 +52,18 @@ pipeline {
             sh 'docker images' /* listar las imagenes*/
         }
         success {
-            echo 'OK'
+            mail    subject: "¡Docker OK!",
+                    body: "El docker se ha contruido con éxito.",
+                    charset: 'UTF-8',
+                    mimeType: 'text/html',
+                    to: "richard.torres@mtp.es";
         }
         failure {
-            echo 'KO'
+            mail    subject: "¡Docker ERROR!",
+                    body: "Ha ocurrdio un error durante la construcción de la imagen docker",
+                    charset: 'UTF-8',
+                    mimeType: 'text/html',
+                    to: "richard.torres@mtp.es";
         }
     }
 }
