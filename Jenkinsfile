@@ -17,6 +17,7 @@ pipeline {
         stage ('¿Donde 👌 estoy?') {
             steps {
                 sh 'pwd'
+				sh 'ls -la'
             }
         }
         stage ('Docker images') {
@@ -39,6 +40,22 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+	post {
+        always {
+            sh 'ls -la' /* ver el contenido de la carpeta*/
+            sh 'docker images' /* listar las imagenes*/
+            sh "docker images | grep ${DockerName} | awk '{print \$3}' | xargs docker rmi -f" /* borramos todas las imagenes*/
+            deleteDir() /* clean up our workspace */
+            sh 'ls -la' /* ver el contenido de la carpeta*/
+            sh 'docker images' /* listar las imagenes*/
+        }
+        success {
+            echo 'OK'
+        }
+        failure {
+            echo 'KO'
         }
     }
 }
