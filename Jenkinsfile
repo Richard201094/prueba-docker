@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DockerUsername = 'richardtorres'
-        GitlabUsername = 'richard201094'
+        GithubUsername = 'richard201094'
         DockerName = 'imagenprueba'
         DockerTag = 'latest'
         DockerLoginCredentials = 'f24dbf03-9e78-40ff-b23b-2522e4eaccf1'
